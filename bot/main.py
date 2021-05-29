@@ -15,11 +15,16 @@ load_dotenv(find_dotenv())
 TOKEN = os.getenv('DISCORD_TOKEN')
 bot = commands.Bot(command_prefix=config.CMD_PREFIX, help_command=None, intents=intents)
 
+extensions = ["control", "info", "subscribe"]
 if __name__ == '__main__':
-    for filename in os.listdir(config.COGS_PATH):
-        if filename.endswith('.py'):
-            bot.load_extension(f'cogs.{filename[:-3]}')
-            print(f'Loaded cogs.{filename[:-3]}')
+    # for filename in os.listdir(config.COGS_PATH):
+    #     if filename.endswith('.py'):
+    #         bot.load_extension(f'cogs.{filename[:-3]}')
+    #         print(f'Loaded cogs.{filename[:-3]}')
+    for filename in extensions:
+        bot.load_extension(f'cogs.{filename}')
+        print(f'Loaded cogs.{filename}')
+
 
 
 @bot.event
