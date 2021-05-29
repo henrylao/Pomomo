@@ -2,7 +2,7 @@ import os
 
 import discord
 from discord.ext import commands, tasks
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 
 from configs import config
 from src.session import session_manager
@@ -11,7 +11,7 @@ intents = discord.Intents.default()
 intents.typing = False
 intents.members = True
 
-load_dotenv()
+load_dotenv(find_dotenv())
 TOKEN = os.getenv('DISCORD_TOKEN')
 bot = commands.Bot(command_prefix=config.CMD_PREFIX, help_command=None, intents=intents)
 
@@ -35,3 +35,4 @@ async def kill_idle_sessions():
 
 
 bot.run(TOKEN)
+
